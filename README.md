@@ -1,51 +1,48 @@
 # skills
 
-A personal library of Claude Code extensions I use and curate — **skills**, **subagents**, and **slash commands** — both things I've authored and things I've found and like. It is not a plugin. Install an artifact by copying the matching file or folder into your `~/.claude/` (or a project's `.claude/`).
+My personal library of Claude Code extensions — things I've authored myself, plus a curated list of third-party ones I use and recommend.
 
-See [`CLAUDE.md`](./CLAUDE.md) for the directory layout, file conventions per type, and attribution rules. See [`ATTRIBUTIONS.md`](./ATTRIBUTIONS.md) for full provenance of third-party items (upstream URL, commit SHA, sync date, license).
+This is **not a plugin** and not an installable package. Extensions I've written are installed by copying a single file or folder into `~/.claude/` (or a project's `.claude/`). Third-party entries in the curated list below are **links, not copies** — follow each link to install from its upstream source.
 
-## Credit & disclaimer
+See [`CLAUDE.md`](./CLAUDE.md) for the directory layout, file conventions per extension type, and rules for adding to the curated list.
 
-**I am not the author of anything in `third-party/`.** Every file under `skills/third-party/`, `agents/third-party/`, and `commands/third-party/` was written by someone else — primarily [Anthropic](https://github.com/anthropics). These files are included here only because I use them myself and want a single place to track, review, and sync the versions I run. I claim no credit for them. Full credit goes to the original authors listed in [`ATTRIBUTIONS.md`](./ATTRIBUTIONS.md), along with exact upstream URLs, commit SHAs, and licenses.
+## My extensions
 
-**No warranty — use at your own risk.** Everything in this repository is provided **as-is**, with no warranty of any kind, express or implied. You are solely responsible for reviewing any skill, subagent, or slash command before installing it into your Claude Code environment. Anything you install runs with your user permissions and can read, modify, or execute files on your machine; treat it accordingly.
+*(None yet.)* When I author a skill, subagent, or slash command, it'll appear here.
 
-**Always prefer the latest official source.** The copies under `third-party/` are **point-in-time snapshots** and will drift behind upstream over time. Before installing anything from this repo:
-1. Open [`ATTRIBUTIONS.md`](./ATTRIBUTIONS.md) and check the `Upstream commit` field for the file you want.
-2. Compare it against the upstream repository's current `HEAD`.
-3. If there is drift, **re-sync from upstream** (or install the official version directly — e.g. via Claude Code's plugin marketplace) rather than using the stale copy here.
+## Extensions I use
 
-When in doubt, install from the official source, not from this repo.
+I curate this list. Everything below is authored by someone else (primarily Anthropic) and lives in its own upstream repository. I am neither the author nor a redistributor — these are pointers, not mirrors. Install directly from upstream (via the plugin marketplace, `gh repo clone`, or a one-off file copy).
 
-## What's inside
-
-### Subagents
-
-- **[`agents/third-party/code-simplifier.md`](./agents/third-party/code-simplifier.md)** — Anthropic's `code-simplifier` agent. Simplifies and refines recently modified code for clarity, consistency, and maintainability while preserving behavior. Upstream: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/code-simplifier
-
-### Slash commands
-
-- **[`commands/third-party/code-review.md`](./commands/third-party/code-review.md)** — Anthropic's `/code-review` command. Performs a multi-agent code review on a pull request with CLAUDE.md compliance checks, bug detection, git-history context, and false-positive filtering. Upstream: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/code-review
-- **[`commands/third-party/security-review.md`](./commands/third-party/security-review.md)** — Anthropic's `/security-review` command. Performs a focused, high-signal security review of the pending changes on the current branch, filtering out noise and low-confidence findings. Upstream: https://github.com/anthropics/claude-code-security-review
+The "Pinned" links below point to the specific commit SHA I vetted — clicking through gives you exactly the version I'm recommending. The second link per entry (where provided) takes you to the plugin marketplace page or the current upstream default branch.
 
 ### Skills
 
-- **[`skills/third-party/frontend-design/`](./skills/third-party/frontend-design/)** — Anthropic's `frontend-design` skill. Guides the creation of distinctive, production-grade frontend interfaces with high design quality, steering away from generic "AI slop" aesthetics. Upstream: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/frontend-design
+- **`frontend-design`** — Anthropic, Apache-2.0. Guides the creation of distinctive, production-grade frontend interfaces with high design quality, explicitly steered away from generic "AI slop" aesthetics.
+  - Pinned: https://github.com/anthropics/claude-plugins-official/blob/104d39be10b7b1380b2ae23a387a11a297b599c3/plugins/frontend-design/skills/frontend-design/SKILL.md
+  - Plugin marketplace: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/frontend-design
 
-## Install
+### Subagents
 
-Skills:
+- **`code-simplifier`** — Anthropic, Apache-2.0. Simplifies and refines recently modified code for clarity, consistency, and maintainability while preserving behaviour.
+  - Pinned: https://github.com/anthropics/claude-plugins-official/blob/104d39be10b7b1380b2ae23a387a11a297b599c3/plugins/code-simplifier/agents/code-simplifier.md
+  - Plugin marketplace: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/code-simplifier
 
-    cp -r skills/third-party/<skill-name> ~/.claude/skills/<skill-name>
+### Slash commands
 
-Subagents:
+- **`/code-review`** — Anthropic, Apache-2.0. Performs a multi-agent code review on a pull request, with CLAUDE.md compliance checks, bug detection, git-history context, and false-positive filtering.
+  - Pinned: https://github.com/anthropics/claude-plugins-official/blob/104d39be10b7b1380b2ae23a387a11a297b599c3/plugins/code-review/commands/code-review.md
+  - Plugin marketplace: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/code-review
+- **`/security-review`** — Anthropic, MIT. Performs a focused, high-signal security review of the pending changes on the current branch, filtering out noise and low-confidence findings.
+  - Pinned: https://github.com/anthropics/claude-code-security-review/blob/0c6a49f1fa56a1d472575da86a94dbc1edb78eda/.claude/commands/security-review.md
+  - Upstream repository: https://github.com/anthropics/claude-code-security-review (the command lives at `.claude/commands/security-review.md`).
 
-    cp agents/third-party/<agent-name>.md ~/.claude/agents/<agent-name>.md
+## License
 
-Slash commands:
+This repository is licensed under the **Apache License 2.0**. See [`LICENSE`](./LICENSE) for the full text. Copyright holder: `Dor Ben Dov`.
 
-    cp commands/third-party/<command-name>.md ~/.claude/commands/<command-name>.md
+Every file in this repo is my own original work. The "Extensions I use" section above is a list of *links* to other people's extensions — those files are not included in this repository, so their licenses do not apply to the repository's contents.
 
-## Automation
+## No warranty
 
-A weekly GitHub Action in [`.github/workflows/check-drift.yml`](./.github/workflows/check-drift.yml) compares every file under `third-party/` against its recorded upstream source and opens an issue labelled `upstream-drift` if any copies have drifted. The detection logic lives in [`.github/scripts/check-drift.py`](./.github/scripts/check-drift.py) — pure Python stdlib, no dependencies, content-accurate via GitHub blob-SHA comparison. Runs every Monday at 08:00 UTC; can also be triggered manually from the Actions tab.
+Everything in this repo is provided **as-is**, without warranty of any kind, express or implied. The full disclaimer lives in `LICENSE` (Apache-2.0 §§7–8). You are responsible for reviewing any file before using it, and for evaluating any third-party extension at its upstream source before installing it.
