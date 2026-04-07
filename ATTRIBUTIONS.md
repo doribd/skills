@@ -5,6 +5,7 @@ This file records the upstream source, commit, sync date, and license for every 
 ### skills/frontend-design
 
 - Source: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/frontend-design
+- Upstream path: plugins/frontend-design/skills/frontend-design/SKILL.md
 - Upstream commit: 104d39be10b7b1380b2ae23a387a11a297b599c3
 - Synced: 2026-04-07
 - License: Apache-2.0
@@ -13,6 +14,7 @@ This file records the upstream source, commit, sync date, and license for every 
 ### agents/code-simplifier
 
 - Source: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/code-simplifier
+- Upstream path: plugins/code-simplifier/agents/code-simplifier.md
 - Upstream commit: 104d39be10b7b1380b2ae23a387a11a297b599c3
 - Synced: 2026-04-07
 - License: Apache-2.0
@@ -21,6 +23,7 @@ This file records the upstream source, commit, sync date, and license for every 
 ### commands/code-review
 
 - Source: https://github.com/anthropics/claude-plugins-official/tree/main/plugins/code-review
+- Upstream path: plugins/code-review/commands/code-review.md
 - Upstream commit: 104d39be10b7b1380b2ae23a387a11a297b599c3
 - Synced: 2026-04-07
 - License: Apache-2.0
@@ -29,6 +32,7 @@ This file records the upstream source, commit, sync date, and license for every 
 ### commands/security-review
 
 - Source: https://github.com/anthropics/claude-code-security-review
+- Upstream path: .claude/commands/security-review.md
 - Upstream commit: 0c6a49f1fa56a1d472575da86a94dbc1edb78eda
 - Synced: 2026-04-07
 - License: MIT
