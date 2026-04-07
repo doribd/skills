@@ -45,3 +45,7 @@ Subagents:
 Slash commands:
 
     cp commands/third-party/<command-name>.md ~/.claude/commands/<command-name>.md
+
+## Automation
+
+A weekly GitHub Action in [`.github/workflows/check-drift.yml`](./.github/workflows/check-drift.yml) compares every file under `third-party/` against its recorded upstream source and opens an issue labelled `upstream-drift` if any copies have drifted. The detection logic lives in [`.github/scripts/check-drift.py`](./.github/scripts/check-drift.py) — pure Python stdlib, no dependencies, content-accurate via GitHub blob-SHA comparison. Runs every Monday at 08:00 UTC; can also be triggered manually from the Actions tab.

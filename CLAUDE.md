@@ -83,12 +83,13 @@ Every third-party artifact gets one `ATTRIBUTIONS.md` entry:
 
     ### <type>/<name>
     - Source: <upstream URL>
+    - Upstream path: <file path within the source repo>
     - Upstream commit: <SHA>
     - Synced: <YYYY-MM-DD>
     - License: <SPDX id or license name>
     - Notes: <optional local modifications or usage notes>
 
-`<type>` is `skills`, `agents`, or `commands`.
+`<type>` is `skills`, `agents`, or `commands`. `Upstream path:` is the path of the file (or the canonical file of a multi-file skill) within the upstream repository — this is what the weekly drift check uses to compare against upstream.
 
 ## Adding a new artifact
 

@@ -1,0 +1,67 @@
+name: Check upstream drift
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"  # Mondays 08:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run drift check
+        id: check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 .github/scripts/check-drift.py
+          if [ -s drift-report.md ]; then
+            echo "has_drift=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_drift=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Ensure drift label exists
+        if: steps.check.outputs.has_drift == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create upstream-drift \
+            --color "d73a4a" \
+            --description "A tracked third-party file has drifted from its upstream source" \
+            --force
+
+      - name: Find existing drift issue
+        if: steps.check.outputs.has_drift == 'true'
+        id: existing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          number=$(gh issue list --state open --label upstream-drift --json number --jq '.[0].number // empty')
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+
+      - name: Create drift issue
+        if: steps.check.outputs.has_drift == 'true' && steps.existing.outputs.number == ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "Upstream drift detected in third-party/" \
+            --label upstream-drift \
+            --body-file drift-report.md
+
+      - name: Update existing drift issue
+        if: steps.check.outputs.has_drift == 'true' && steps.existing.outputs.number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue edit "${{ steps.existing.outputs.number }}" --body-file drift-report.md
+          gh issue comment "${{ steps.existing.outputs.number }}" \
+            --body "Drift report updated by run ${GITHUB_RUN_ID}."
