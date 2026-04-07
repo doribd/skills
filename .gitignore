@@ -3,6 +3,3 @@
 
 # Windows Git Bash crash dumps
 *.stackdump
-
-# Runtime output of .github/scripts/check-drift.py
-/drift-report.md
