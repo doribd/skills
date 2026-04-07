@@ -1,0 +1,5 @@
+# Claude Code session-local settings
+.claude/settings.local.json
+
+# Windows Git Bash crash dumps
+*.stackdump
